@@ -17,7 +17,11 @@ class Calculator {
 
     appendNumber(number) {
         if (number === '.' && this.currentOperand.includes('.')) return // we only want to append one decimal, not multiple so we return from the function
-        this.currentOperand = this.currentOperand.toString() + number.toString()
+        if (this.previousOperand !== '' && this.operation === undefined) {
+            this.currentOperand = number.toString();
+        } else {
+            this.currentOperand = this.currentOperand.toString() + number.toString();
+        }
     }
 
     chooseOperation(operation) {
